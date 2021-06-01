@@ -57,7 +57,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   log(`vETH2 pool LP Token at ${lpTokenAddress}`)
 
   await save("SaddleVETH2PoolLPToken", {
-    abi: (await get("TBTC")).abi, // Generic ERC20 ABI
+    abi: (await get("DAI")).abi, // Generic ERC20 ABI
     address: lpTokenAddress,
   })
 }

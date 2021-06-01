@@ -6,7 +6,6 @@ import { BytesLike } from "@ethersproject/bytes"
 import { Contract } from "@ethersproject/contracts"
 import { ERC20 } from "../build/typechain/ERC20"
 import { Swap } from "../build/typechain/Swap"
-import merkleTreeDataTest from "../test/exampleMerkleTree.json"
 
 export const MAX_UINT256 = ethers.constants.MaxUint256
 export const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
@@ -63,23 +62,6 @@ export async function deployContractWithLibraries(
   } else {
     return swapFactory.deploy()
   }
-}
-
-export function getTestMerkleRoot(): string {
-  return merkleTreeDataTest.merkleRoot
-}
-
-export function getTestMerkleAllowedAccounts(): Record<string, any> {
-  return merkleTreeDataTest.allowedAccounts
-}
-
-export function getTestMerkleProof(address: string): BytesLike[] {
-  const ALLOWED_ACCOUNTS: Record<string, any> = getTestMerkleAllowedAccounts()
-
-  if (address in ALLOWED_ACCOUNTS) {
-    return ALLOWED_ACCOUNTS[address].proof
-  }
-  return []
 }
 
 // Contract calls
