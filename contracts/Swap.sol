@@ -37,9 +37,6 @@ contract Swap is OwnerPausableUpgradeable, ReentrancyGuardUpgradeable {
     // access this data, this contract uses SwapUtils library. For more details, see SwapUtils.sol
     SwapUtils.Swap public swapStorage;
 
-    // True if the contract is initialized.
-    bool private initialized = false;
-
     // Maps token address to an index in the pool. Used to prevent duplicate tokens in the pool.
     // getTokenIndex function also relies on this mapping to retrieve token index.
     mapping(address => uint8) private tokenIndexes;
@@ -184,6 +181,8 @@ contract Swap is OwnerPausableUpgradeable, ReentrancyGuardUpgradeable {
         swapStorage.balances = new uint256[](_pooledTokens.length);
         swapStorage.initialA = _a.mul(AmplificationUtils.A_PRECISION);
         swapStorage.futureA = _a.mul(AmplificationUtils.A_PRECISION);
+        // swapStorage.initialATime = 0;
+        // swapStorage.futureATime = 0;
         swapStorage.swapFee = _fee;
         swapStorage.adminFee = _adminFee;
         swapStorage.defaultWithdrawFee = _withdrawFee;
