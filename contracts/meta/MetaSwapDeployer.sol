@@ -68,19 +68,11 @@ contract MetaSwapDeployer is Ownable {
             lpTokenTargetAddress,
             baseSwap
         );
-        (
-            uint256 initialA,
-            uint256 futureA,
-            uint256 initialATime,
-            uint256 futureATime,
-            uint256 swapFee,
-            uint256 adminFee,
-            uint256 defaultWithdrawFee,
-            address lpToken
-        ) = IMetaSwap(metaSwapClone).swapStorage();
+        (, , , , , , , address lpToken) =
+            IMetaSwap(metaSwapClone).swapStorage();
 
         IMetaSwapDeposit(metaSwapDepositClone).initialize(
-            baseSwap,
+            ISwap(baseSwap),
             IMetaSwap(metaSwapClone),
             IERC20(lpToken)
         );

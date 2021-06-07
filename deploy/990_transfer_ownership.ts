@@ -9,12 +9,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { execute, log, read } = deployments
   const { deployer } = await getNamedAccounts()
 
-  const contractsToTransferOwnership = [
-    "Allowlist",
-    "SaddleBTCPool",
-    "SaddleUSDPool",
-    "SaddleVETH2Pool",
-  ]
+  const contractsToTransferOwnership = ["NerveUSDPool"]
 
   const currentChain = await getChainId()
   if (currentChain == CHAIN_ID.MAINNET) {
@@ -51,4 +46,4 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 }
 export default func
 func.tags = ["TransferOwnership"]
-func.dependencies = ["Allowlist", "BTCPool", "USDPool"]
+func.dependencies = ["USDPool"]
