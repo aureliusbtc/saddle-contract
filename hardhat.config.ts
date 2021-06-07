@@ -19,6 +19,10 @@ let config: HardhatUserConfig = {
     coverage: {
       url: "http://127.0.0.1:8555",
     },
+    bsc: {
+      url: "https://bsc-dataseed1.defibit.io",
+      gasPrice: 5 * 1000000000,
+    },
     mainnet: {
       url: process.env.ALCHEMY_API,
       gasPrice: 15 * 1000000000,
@@ -61,7 +65,7 @@ let config: HardhatUserConfig = {
       1: 0, // similarly on mainnet it will take the first account as deployer. Note though that depending on how hardhat network are configured, the account 0 on one network can be different than on another
     },
     libraryDeployer: {
-      default: 1, // use a different account for deploying libraries on the hardhat network
+      default: 0, // use a different account for deploying libraries on the hardhat network
       1: 0, // use the same address as the main deployer on mainnet
     },
   },
@@ -81,6 +85,16 @@ if (process.env.ACCOUNT_PRIVATE_KEYS) {
     mainnet: {
       ...config.networks?.mainnet,
       accounts: JSON.parse(process.env.ACCOUNT_PRIVATE_KEYS),
+    },
+  }
+}
+
+if (process.env.BSC_PRIVATE_KEYS) {
+  config.networks = {
+    ...config.networks,
+    bsc: {
+      ...config.networks?.bsc,
+      accounts: JSON.parse(process.env.BSC_PRIVATE_KEYS),
     },
   }
 }

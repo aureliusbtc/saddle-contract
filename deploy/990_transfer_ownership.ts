@@ -2,6 +2,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction } from "hardhat-deploy/types"
 import { CHAIN_ID } from "../utils/network"
 import { MULTISIG_ADDRESS } from "../utils/accounts"
+import { BSC_MULTISIG_ADDRESS } from "../utils/accounts"
 import path from "path"
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
@@ -9,11 +10,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { execute, log, read } = deployments
   const { deployer } = await getNamedAccounts()
 
-  const contractsToTransferOwnership = ["NerveUSDPool"]
+  const ethContractsToTransferOwnership = ["NerveUSDPool"]
+  const bscContractsToTransferOwnership = ["NerveBSCUSDPool"]
 
   const currentChain = await getChainId()
   if (currentChain == CHAIN_ID.MAINNET) {
-    for (const contract of contractsToTransferOwnership) {
+    for (const contract of ethContractsToTransferOwnership) {
       // Check current owner
       const currentOwner = await read(contract, "owner")
 
@@ -33,6 +35,34 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       else if (currentOwner == MULTISIG_ADDRESS) {
         log(
           `"${contract}" is already owned by the multisig: ${MULTISIG_ADDRESS}`,
+        )
+      }
+      // Someone else owns the contract
+      else {
+        log(`"${contract}" is owned by unrecognized address: ${currentOwner}`)
+      }
+    }
+  } else if (currentChain == CHAIN_ID.BSC) {
+    for (const contract of bscContractsToTransferOwnership) {
+      // Check current owner
+      const currentOwner = await read(contract, "owner")
+
+      // If the deployer still owns the contract, then transfer the ownership to the multisig
+      if (currentOwner == deployer) {
+        log(
+          `transferring the ownership of "${contract}" to the multisig: ${BSC_MULTISIG_ADDRESS}`,
+        )
+        await execute(
+          contract,
+          { from: deployer, log: true },
+          "transferOwnership",
+          BSC_MULTISIG_ADDRESS,
+        )
+      }
+      // If Multisig already owns the contract, skip
+      else if (currentOwner == BSC_MULTISIG_ADDRESS) {
+        log(
+          `"${contract}" is already owned by the multisig: ${BSC_MULTISIG_ADDRESS}`,
         )
       }
       // Someone else owns the contract

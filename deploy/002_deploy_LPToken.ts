@@ -3,22 +3,25 @@ import { DeployFunction } from "hardhat-deploy/types"
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployments, getNamedAccounts } = hre
-  const { deploy, execute } = deployments
+  const { deploy, execute, getOrNull } = deployments
   const { libraryDeployer } = await getNamedAccounts()
 
-  await deploy("LPToken", {
-    from: libraryDeployer,
-    log: true,
-    skipIfAlreadyDeployed: true,
-  })
+  let LPToken = await getOrNull("LPToken")
+  if (!LPToken) {
+    await deploy("LPToken", {
+      from: libraryDeployer,
+      log: true,
+      skipIfAlreadyDeployed: true,
+    })
 
-  await execute(
-    "LPToken",
-    { from: libraryDeployer, log: true },
-    "initialize",
-    "Nerve LP Token (Target)",
-    "nerveLPTokenTarget",
-  )
+    await execute(
+      "LPToken",
+      { from: libraryDeployer, log: true },
+      "initialize",
+      "Nerve LP Token (Target)",
+      "nerveLPTokenTarget",
+    )
+  }
 }
 export default func
 func.tags = ["LPToken"]
