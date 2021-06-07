@@ -49,7 +49,7 @@ interface IMetaSwap {
     ) external view returns (uint256 availableTokenAmount);
 
     // state modifying functions
-    function initialize(
+    function initializeMetaSwap(
         IERC20[] memory pooledTokens,
         uint8[] memory decimals,
         string memory lpTokenName,
@@ -57,7 +57,9 @@ interface IMetaSwap {
         uint256 a,
         uint256 fee,
         uint256 adminFee,
-        uint256 withdrawFee
+        uint256 withdrawFee,
+        address lpTokenTargetAddress,
+        address baseSwap
     ) external;
 
     function swap(
@@ -104,4 +106,18 @@ interface IMetaSwap {
     // withdraw fee update function
     function updateUserWithdrawFee(address recipient, uint256 transferAmount)
         external;
+
+    function swapStorage()
+        external
+        view
+        returns (
+            uint256 initialA,
+            uint256 futureA,
+            uint256 initialATime,
+            uint256 futureATime,
+            uint256 swapFee,
+            uint256 adminFee,
+            uint256 defaultWithdrawFee,
+            address lpToken
+        );
 }
