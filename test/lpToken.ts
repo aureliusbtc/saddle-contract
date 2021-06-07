@@ -45,15 +45,11 @@ describe("LPToken", async () => {
   it("Reverts when transferring the token to itself", async () => {
     const swap = (await ethers.getContractAt(
       "SwapFlashLoan",
-      (
-        await get("SaddleUSDPool")
-      ).address,
+      (await get("NerveUSDPool")).address,
     )) as SwapFlashLoan
     const lpToken = (await ethers.getContractAt(
       "LPToken",
-      (
-        await get("SaddleUSDPoolLPToken")
-      ).address,
+      (await get("NerveUSDPoolLPToken")).address,
     )) as LPToken
 
     const ownerAddress = await owner.getAddress()
@@ -61,9 +57,7 @@ describe("LPToken", async () => {
     await asyncForEach(["DAI", "USDC", "USDT"], async (tokenName) => {
       const token = (await ethers.getContractAt(
         "GenericERC20",
-        (
-          await get(tokenName)
-        ).address,
+        (await get(tokenName)).address,
       )) as GenericERC20
       await token.mint(
         ownerAddress,
