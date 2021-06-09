@@ -23,6 +23,11 @@ let config: HardhatUserConfig = {
       url: "https://bsc-dataseed1.defibit.io",
       gasPrice: 5 * 1000000000,
     },
+    polygon: {
+      url:
+        "https://polygon-mainnet.infura.io/v3/1ed5f5745cdd4c6093369a9df6627145",
+      gasPrice: 5 * 1000000000,
+    },
     mainnet: {
       url: process.env.ALCHEMY_API,
       gasPrice: 15 * 1000000000,
@@ -95,6 +100,16 @@ if (process.env.BSC_PRIVATE_KEYS) {
     bsc: {
       ...config.networks?.bsc,
       accounts: JSON.parse(process.env.BSC_PRIVATE_KEYS),
+    },
+  }
+}
+
+if (process.env.POLYGON_PRIVATE_KEYS) {
+  config.networks = {
+    ...config.networks,
+    polygon: {
+      ...config.networks?.polygon,
+      accounts: JSON.parse(process.env.POLYGON_PRIVATE_KEYS),
     },
   }
 }
