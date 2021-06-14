@@ -32,7 +32,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       "SwapDeployer",
       { from: deployer, log: true },
       "deploy",
-      (await get("SwapFlashLoan")).address,
+      (
+        await get("SwapFlashLoan")
+      ).address,
       TOKEN_ADDRESSES,
       TOKEN_DECIMALS,
       LP_TOKEN_NAME,
@@ -40,8 +42,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       INITIAL_A,
       SWAP_FEE,
       ADMIN_FEE,
-      WITHDRAW_FEE,
-      (await get("LPToken")).address,
+      (
+        await get("LPToken")
+      ).address,
     )
 
     const newPoolEvent = receipt?.events?.find(

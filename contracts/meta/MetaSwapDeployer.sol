@@ -64,12 +64,10 @@ contract MetaSwapDeployer is Ownable {
             _a,
             _fee,
             _adminFee,
-            _withdrawFee,
             lpTokenTargetAddress,
             baseSwap
         );
-        (, , , , , , , address lpToken) =
-            IMetaSwap(metaSwapClone).swapStorage();
+        (, , , , , , address lpToken) = IMetaSwap(metaSwapClone).swapStorage();
 
         IMetaSwapDeposit(metaSwapDepositClone).initialize(
             ISwap(baseSwap),
