@@ -46,8 +46,7 @@ contract LPToken is ERC20BurnableUpgradeable, OwnableUpgradeable {
 
     /**
      * @dev Overrides ERC20._beforeTokenTransfer() which get called on every transfers including
-     * minting and burning. This ensures that Swap.updateUserWithdrawFees are called everytime.
-     * This assumes the owner is set to a Swap contract's address.
+     * minting and burning. * This assumes the owner is set to a Swap contract's address.
      */
     function _beforeTokenTransfer(
         address from,

@@ -50,7 +50,6 @@ contract MetaSwapDeployer is Ownable {
         uint256 _a,
         uint256 _fee,
         uint256 _adminFee,
-        uint256 _withdrawFee,
         address lpTokenTargetAddress,
         address baseSwap
     ) external returns (address) {

@@ -2,9 +2,9 @@
 
 ### Contract Addresses
 
-Nerve USD Swap Pool: [0xAF44D6eCC4f2F31140DbE99F835A45700fdC8aBE](https://etherscan.io/address/0xAF44D6eCC4f2F31140DbE99F835A45700fdC8aBE)
+Nerve USD Swap Pool: [0x5E2EBA6BD559BCeE37Ffee964880676df05dE34a](https://etherscan.io/address/0x5E2EBA6BD559BCeE37Ffee964880676df05dE34a)
 
-Nerve USD Swap LP Token: [0xC785D46CA2751B6FdB023aCd86d6400679bee2B9](https://etherscan.io/address/0xC785D46CA2751B6FdB023aCd86d6400679bee2B9)
+Nerve USD Swap LP Token: [0x0daC4f148Da6C682471434A9482A07E1B055C199](https://etherscan.io/address/0x0daC4f148Da6C682471434A9482A07E1B055C199)
 
 DAI: [0x6b175474e89094c44da98b954eedeac495271d0f](https://etherscan.io/address/0x6b175474e89094c44da98b954eedeac495271d0f)
 
@@ -18,9 +18,9 @@ USDT: [0xdac17f958d2ee523a2206206994597c13d831ec7](https://etherscan.io/address/
 
 ### Contract Addresses
 
-Nerve BSC USD Pool: [0xb34f6183dc6e4f9bC925F3f74F9B326CE42476d5](https://bscscan.com/address/0xb34f6183dc6e4f9bC925F3f74F9B326CE42476d5)
+Nerve BSC USD Pool: [0x2A951794d0cA0F97CD8F9d071eea7779931fc17f](https://bscscan.com/address/0x2A951794d0cA0F97CD8F9d071eea7779931fc17f)
 
-Nerve BSC USD LP Token: [0xE19983ed2F91cE8E102c76Cf99b304aeC93bde3f](https://bscscan.com/address/0xE19983ed2F91cE8E102c76Cf99b304aeC93bde3f)
+Nerve BSC USD LP Token: [0x7aeeBE2d3BD9f483FFF0A2d3e16B9a967BCFa44f](https://bscscan.com/address/0x7aeeBE2d3BD9f483FFF0A2d3e16B9a967BCFa44f)
 
 BUSD: [0xe9e7cea3dedca5984780bafc599bd69add087d56](https://bscscan.com/address/0xe9e7cea3dedca5984780bafc599bd69add087d56)
 

@@ -80,7 +80,6 @@ contract Swap is OwnerPausableUpgradeable, ReentrancyGuardUpgradeable {
     );
     event NewAdminFee(uint256 newAdminFee);
     event NewSwapFee(uint256 newSwapFee);
-    event NewWithdrawFee(uint256 newWithdrawFee);
     event RampA(
         uint256 oldA,
         uint256 newA,
@@ -153,7 +152,7 @@ contract Swap is OwnerPausableUpgradeable, ReentrancyGuardUpgradeable {
             tokenIndexes[address(_pooledTokens[i])] = i;
         }
 
-        // Check _a, _fee, _adminFee, _withdrawFee parameters
+        // Check _a, _fee, _adminFee parameters
         require(_a < AmplificationUtils.MAX_A, "_a exceeds maximum");
         require(_fee < SwapUtils.MAX_SWAP_FEE, "_fee exceeds maximum");
         require(

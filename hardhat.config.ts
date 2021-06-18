@@ -24,8 +24,7 @@ let config: HardhatUserConfig = {
       gasPrice: 5 * 1000000000,
     },
     polygon: {
-      url:
-        "https://polygon-mainnet.infura.io/v3/1ed5f5745cdd4c6093369a9df6627145",
+      url: "https://polygon-mainnet.infura.io/v3/1ed5f5745cdd4c6093369a9df6627145",
       gasPrice: 5 * 1000000000,
     },
     mainnet: {

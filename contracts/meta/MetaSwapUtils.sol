@@ -66,7 +66,6 @@ library MetaSwapUtils {
     );
     event NewAdminFee(uint256 newAdminFee);
     event NewSwapFee(uint256 newSwapFee);
-    event NewWithdrawFee(uint256 newWithdrawFee);
 
     struct MetaSwap {
         // Meta-Swap related parameters
