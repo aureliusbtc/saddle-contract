@@ -44,6 +44,7 @@
     "prettier": "^2.3.0",
     "prettier-plugin-solidity": "^1.0.0-beta.11",
     "shelljs": "^0.8.4",
+    "sol-merger": "^3.1.0",
     "solhint": "^3.3.6",
     "solhint-plugin-prettier": "0.0.5",
     "solidity-coverage": "^0.7.16",
@@ -56,6 +57,7 @@
   "scripts": {
     "lint": "npm run lint:ts && npm run lint:sol && npm run lint:json",
     "lint:fix": "npm run lint:fix:ts && npm run lint:fix:sol && npm run lint:fix:json",
+    "build-go": "sol-merger \"./contracts/*.sol\" ./build --export-plugin SPDXLicenseRemovePlugin",
     "lint:ts": "eslint --ext ts ${npm_package_config_eslintPaths} && prettier --list-different test/**/*.ts deploy/**/*.ts",
     "lint:fix:ts": "eslint --ext ts --fix ${npm_package_config_eslintPaths} && prettier --write test/**/*.ts deploy/**/*.ts",
     "lint:json": "eslint --ext ts ${npm_package_config_eslintPaths} && prettier --list-different deployments/**/*.json",
