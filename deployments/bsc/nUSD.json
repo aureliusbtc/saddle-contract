@@ -1,5 +1,4 @@
 {
-  "address": "0x4AEC091d272A779705CE8f3EEEedec131161048b",
   "abi": [
     {
       "constant": true,
@@ -221,5 +220,6 @@
       "name": "Transfer",
       "type": "event"
     }
-  ]
+  ],
+  "address": "0x797715147730ce0563a9fd31104ade5d54fbb87a"
 }

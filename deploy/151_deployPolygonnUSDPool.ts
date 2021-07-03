@@ -8,33 +8,29 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await getNamedAccounts()
 
   // Manually check if the pool is already deployed
-  let nerveUSDPool = await getOrNull("NervePolygonUSDPool")
+  let nerveUSDPool = await getOrNull("PolygonNervenUSDMetaPool")
   if (nerveUSDPool) {
-    log(`reusing "NervePolygonUSDPool" at ${nerveUSDPool.address}`)
+    log(`reusing "PolygonNervenUSDMetaPool" at ${nerveUSDPool.address}`)
   } else if ((await getChainId()) != CHAIN_ID.POLYGON) {
     log(`Not Polygon`)
   } else {
     // Constructor arguments
     const TOKEN_ADDRESSES = [
-      (await get("DAI")).address,
-      (await get("USDC")).address,
-      (await get("USDT")).address,
+      (await get("nUSD")).address,
+      (await get("NervePolygonUSDPoolLPToken")).address,
     ]
-    const TOKEN_DECIMALS = [18, 6, 6]
-    const LP_TOKEN_NAME = "Nerve USD LP"
-    const LP_TOKEN_SYMBOL = "nerveUSD-LP"
+    const TOKEN_DECIMALS = [18, 18]
+    const LP_TOKEN_NAME = "Nerve nUSD Metapool LP"
+    const LP_TOKEN_SYMBOL = "nerveNUSD-LP"
     const INITIAL_A = 2000
     const SWAP_FEE = 4e6 // 4bps
     const ADMIN_FEE = 0
     const WITHDRAW_FEE = 0
 
     const receipt = await execute(
-      "SwapDeployer",
+      "MetaSwapDeployer",
       { from: deployer, log: true },
       "deploy",
-      (
-        await get("SwapFlashLoan")
-      ).address,
       TOKEN_ADDRESSES,
       TOKEN_DECIMALS,
       LP_TOKEN_NAME,
@@ -45,32 +41,44 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       (
         await get("LPToken")
       ).address,
+      (
+        await get("NervePolygonUSDPool")
+      ).address,
     )
 
     const newPoolEvent = receipt?.events?.find(
-      (e: any) => e["event"] == "NewSwapPool",
+      (e: any) => e["event"] == "NewMetaSwapPool",
     )
-    const usdSwapAddress = newPoolEvent["args"]["swapAddress"]
+    const usdSwapAddress = newPoolEvent["args"]["metaSwapAddress"]
+    const usdSwapDepositAddress = newPoolEvent["args"]["metaSwapDepositAddress"]
     log(
-      `deployed USD pool clone (targeting "SwapFlashLoan") at ${usdSwapAddress}`,
+      `deployed USD pool clone (targeting "NervePolygonUSDPool") at ${usdSwapAddress}`,
     )
-    await save("NervePolygonUSDPool", {
-      abi: (await get("SwapFlashLoan")).abi,
+    await save("PolygonNerveNUSDMetaPoolDeposit", {
+      abi: (await get("MetaSwapDeposit")).abi,
+      address: usdSwapDepositAddress,
+    })
+    log(
+      `deployed USD metapool deposit clone (targeting "NervePolygonUSDPool") at ${usdSwapDepositAddress}`,
+    )
+    await save("PolygonNerveNUSDMetaPool", {
+      abi: (await get("MetaSwap")).abi,
       address: usdSwapAddress,
     })
 
-    const lpTokenAddress = (await read("NervePolygonUSDPool", "swapStorage"))
-      .lpToken
+    const lpTokenAddress = (
+      await read("PolygonNerveNUSDMetaPools", "swapStorage")
+    ).lpToken
     log(`USD pool LP Token at ${lpTokenAddress}`)
 
-    await save("NervePolygonUSDPoolLPToken", {
+    await save("PolygonNerveNUSDMetaPoolLPToken", {
       abi: (await get("USDC")).abi, // Generic ERC20 ABI
       address: lpTokenAddress,
     })
   }
 }
 export default func
-func.tags = ["PolygonUSDPool"]
+func.tags = ["PolygonNerveNUSDMetaPool"]
 func.dependencies = [
   "SwapUtils",
   "SwapDeployer",

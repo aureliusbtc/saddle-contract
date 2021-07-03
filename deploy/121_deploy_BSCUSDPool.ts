@@ -22,7 +22,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     ]
     const TOKEN_DECIMALS = [18, 18, 18]
     const LP_TOKEN_NAME = "Nerve USD LP"
-    const LP_TOKEN_SYMBOL = "nUSD"
+    const LP_TOKEN_SYMBOL = "nerveUSD-LP"
     const INITIAL_A = 2000
     const SWAP_FEE = 4e6 // 4bps
     const ADMIN_FEE = 0
