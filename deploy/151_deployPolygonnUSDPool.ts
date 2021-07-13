@@ -67,7 +67,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     })
 
     const lpTokenAddress = (
-      await read("PolygonNerveNUSDMetaPools", "swapStorage")
+      await read("PolygonNerveNUSDMetaPool", "swapStorage")
     ).lpToken
     log(`USD pool LP Token at ${lpTokenAddress}`)
 
