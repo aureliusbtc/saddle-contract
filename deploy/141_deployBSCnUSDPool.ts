@@ -20,8 +20,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       (await get("NerveBSCUSDPoolLPToken")).address,
     ]
     const TOKEN_DECIMALS = [18, 18]
-    const LP_TOKEN_NAME = "Nerve nUSD Metapool LP"
-    const LP_TOKEN_SYMBOL = "nerveNUSD-LP"
+    const LP_TOKEN_NAME = "nUSD LP"
+    const LP_TOKEN_SYMBOL = "nUSD-LP"
     const INITIAL_A = 2000
     const SWAP_FEE = 4e6 // 4bps
     const ADMIN_FEE = 0
