@@ -27,6 +27,10 @@ let config: HardhatUserConfig = {
       url: "https://polygon-mainnet.infura.io/v3/1ed5f5745cdd4c6093369a9df6627145",
       gasPrice: 5 * 1000000000,
     },
+    avalanche: {
+      url: "https://api.avax.network/ext/bc/C/rpc",
+      gasPrice: 225 * 1000000000,
+    },
     mainnet: {
       url: process.env.ALCHEMY_API,
       gasPrice: 60 * 1000000000,
