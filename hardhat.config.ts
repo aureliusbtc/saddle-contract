@@ -117,6 +117,17 @@ if (process.env.POLYGON_PRIVATE_KEYS) {
   }
 }
 
+
+if (process.env.AVALANCHE_PRIVATE_KEYS) {
+  config.networks = {
+    ...config.networks,
+    avalanche: {
+      ...config.networks?.avalanche,
+      accounts: JSON.parse(process.env.AVALANCHE_PRIVATE_KEYS),
+    },
+  }
+}
+
 if (process.env.FORK_MAINNET && config.networks) {
   config.networks.hardhat = {
     forking: {

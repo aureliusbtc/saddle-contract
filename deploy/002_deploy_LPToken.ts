@@ -18,8 +18,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       "LPToken",
       { from: libraryDeployer, log: true },
       "initialize",
-      "Nerve LP Token (Target)",
-      "nerveLPTokenTarget",
+      "Synapse LP Token (Target)",
+      "synapseLPTokenTarget",
     )
   }
 }
