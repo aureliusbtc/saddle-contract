@@ -4,5 +4,6 @@ export const CHAIN_ID = {
   BSC: "56",
   POLYGON: "137",
   HARDHAT: "31337",
-  AVALANCHE: "43114"
+  AVALANCHE: "43114",
+  ARBITRUM: "42161"
 }
