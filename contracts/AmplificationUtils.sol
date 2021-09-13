@@ -25,7 +25,7 @@ library AmplificationUtils {
     uint256 public constant A_PRECISION = 100;
     uint256 public constant MAX_A = 10**6;
     uint256 private constant MAX_A_CHANGE = 2;
-    uint256 private constant MIN_RAMP_TIME = 14 days;
+    uint256 private constant MIN_RAMP_TIME = 7 days;
 
     /**
      * @notice Return A, the amplification coefficient * n * (n - 1)
