@@ -21,8 +21,8 @@ let config: HardhatUserConfig = {
     },
     arbitrum: {
       url: "https://arb1.arbitrum.io/rpc",
-      gasPrice: 10 * 1000000000,
-      gas: 100000000
+      gasPrice: 2 * 1000000000,
+      // gas: 100000000
     },
     bsc: {
       url: "https://bsc-dataseed1.defibit.io",
