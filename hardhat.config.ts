@@ -19,9 +19,14 @@ let config: HardhatUserConfig = {
     coverage: {
       url: "http://127.0.0.1:8555",
     },
+    arbitrum: {
+      url: "https://arb1.arbitrum.io/rpc",
+      gasPrice: 2 * 1000000000,
+      // gas: 100000000
+    },
     bsc: {
       url: "https://bsc-dataseed1.defibit.io",
-      gasPrice: 5 * 1000000000,
+      gasPrice: 5 * 1000000000, 
     },
     polygon: {
       url: "https://polygon-mainnet.infura.io/v3/1ed5f5745cdd4c6093369a9df6627145",
@@ -127,6 +132,19 @@ if (process.env.AVALANCHE_PRIVATE_KEYS) {
     },
   }
 }
+
+
+
+if (process.env.ARBITRUM_PRIVATE_KEYS) {
+  config.networks = {
+    ...config.networks,
+    arbitrum: {
+      ...config.networks?.arbitrum,
+      accounts: JSON.parse(process.env.ARBITRUM_PRIVATE_KEYS),
+    },
+  }
+}
+
 
 if (process.env.FORK_MAINNET && config.networks) {
   config.networks.hardhat = {
