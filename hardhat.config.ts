@@ -26,11 +26,14 @@ let config: HardhatUserConfig = {
     },
     bsc: {
       url: "https://bsc-dataseed1.defibit.io",
-      gasPrice: 5 * 1000000000, 
+      gasPrice: 5 * 1000000000,
     },
     polygon: {
       url: "https://polygon-mainnet.infura.io/v3/1ed5f5745cdd4c6093369a9df6627145",
       gasPrice: 5 * 1000000000,
+    },
+    fantom: {
+      url: "https://rpc.ftm.tools/",
     },
     avalanche: {
       url: "https://api.avax.network/ext/bc/C/rpc",
@@ -122,7 +125,6 @@ if (process.env.POLYGON_PRIVATE_KEYS) {
   }
 }
 
-
 if (process.env.AVALANCHE_PRIVATE_KEYS) {
   config.networks = {
     ...config.networks,
@@ -132,8 +134,6 @@ if (process.env.AVALANCHE_PRIVATE_KEYS) {
     },
   }
 }
-
-
 
 if (process.env.ARBITRUM_PRIVATE_KEYS) {
   config.networks = {
@@ -145,6 +145,15 @@ if (process.env.ARBITRUM_PRIVATE_KEYS) {
   }
 }
 
+if (process.env.FANTOM_PRIVATE_KEYS) {
+  config.networks = {
+    ...config.networks,
+    fantom: {
+      ...config.networks?.fantom,
+      accounts: JSON.parse(process.env.FANTOM_PRIVATE_KEYS),
+    },
+  }
+}
 
 if (process.env.FORK_MAINNET && config.networks) {
   config.networks.hardhat = {

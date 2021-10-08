@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@eth-optimism/smock": "^1.1.4",
+    "@movr/fund-movr-sdk": "0.0.1-beta.5",
     "@openzeppelin/contracts": "3.4.1",
     "@openzeppelin/contracts-upgradeable": "^3.4.1",
     "dotenv": "^10.0.0",

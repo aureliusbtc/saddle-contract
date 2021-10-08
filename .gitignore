@@ -43,3 +43,16 @@ deployments/localhost/
 
 dead/
 yarn-error.log
+
+node_modules
+
+#Hardhat files
+cache
+artifacts
+
+.vscode
+build
+tenderly.yaml
+
+.env
+
